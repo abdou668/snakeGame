@@ -1,9 +1,11 @@
 let countdown=3,avanceX=0,avanceY=0,score=0;
-var rapidite=9;
+var rapidite=20;
+let scoreAffiche;
 const btn = document.getElementById("btn");
 const jeu = document.getElementById("jeu");  
 const titre = document.getElementById("titre");      
 const gg = document.getElementById("felicitation"); 
+const replay=document.getElementById("rejouer");
 const ctx = jeu.getContext("2d");
 var monSerpent ,bonbon,lonBonbon=10,larBonbon=10,xSerpent=200,ySerpent=200;
 function demmare() {
@@ -37,6 +39,7 @@ class serpent extends composant {
         super(20,20,"lightgreen",x,y);
         this.corps = [];
         this.taille = 0;
+        this.direction = { x: 0, y: 0 };
     }
     creation() {
         super.creation();
@@ -54,7 +57,6 @@ class serpent extends composant {
         this.y +=avanceY;
     }
     grandir(){
-        console.log("je suis garnd");
         this.taille++;
     }
     mange(obj){
@@ -83,12 +85,26 @@ function genererBonbon() {
 }
 function congratulation() {
     clearInterval(interval);
-    gg.classList.remove("noDisp");
-    gg.textContent=`WOOWOWWWOOWOWOWOW IMPRESSIONANT GG ton score est de ${score} !!!`;
-    //replay.classList.remove("noDisp");
+    gg.classList.remove("noDisp");gg.classList.add("taille");
+    scoreAffiche = document.createElement("span");
+    scoreAffiche.style.marginTop ='auto';
+    scoreAffiche.textContent = `SCORE : ${score} POINTS !!!`;
+    gg.appendChild(scoreAffiche);
+    replay.classList.remove("noDisp");
+}
+function replayFonct() {
+    demmare();
+    score=0;
+    gg.classList.add("noDisp");
+    gg.removeChild(scoreAffiche);
+    scoreAffiche=null;
 }
 function update() {
-    if (monSerpent.toucheObstacle()) {
+    /*for (let i = 1; i < monSerpent.corps.length; i++) {
+        if (monSerpent.mange(monSerpent.corps[i])) {
+            congratulation();
+        }}*/
+    if (monSerpent.toucheObstacle() /*|| monSerpent.mange(monSerpent.corps[taille])*/) {
         congratulation();
     }
     else{
@@ -105,10 +121,22 @@ function update() {
 }
 //document.addEventListener("keyup",()=>{avanceX=0;avanceY=0;})   au cas ou ^^
 function mouvement(e) {
-    if (e.keyCode === 37) {avanceX=-rapidite;avanceY=0;}
-    else if (e.keyCode === 38) {avanceX=0;avanceY=-rapidite;}
-    else if (e.keyCode === 39) {avanceX=rapidite;avanceY=0;}
-    else if (e.keyCode === 40) {avanceX=0;avanceY=rapidite;}
+    switch (e.keyCode) {
+        case 37: // Gauche
+            if (monSerpent.direction.x === 0) {monSerpent.direction = { x: -rapidite, y: 0 };}
+            break;
+        case 38: // Haut
+            if (monSerpent.direction.y === 0) {monSerpent.direction = { x: 0, y: -rapidite };}
+            break;
+        case 39: // Droite
+            if (monSerpent.direction.x === 0) {monSerpent.direction = { x: rapidite, y: 0 };}
+            break;
+        case 40: // Bas
+            if (monSerpent.direction.y === 0) {monSerpent.direction = { x: 0, y: rapidite };}
+            break;
+    }
+    avanceX = monSerpent.direction.x;
+    avanceY = monSerpent.direction.y;
 }
 function fcountdown() {
     btn.disabled =true;
@@ -125,3 +153,4 @@ function fcountdown() {
     setTimeout(function(){btn.classList.add("noDisp");titre.classList.add("noDisp");jeu.classList.add("taille");document.addEventListener("keydown",mouvement);demmare();},4000);
 }
 btn.onclick = fcountdown;
+replay.onclick = replayFonct;
