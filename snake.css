@@ -1,0 +1,11 @@
+body{background-color: lightseagreen;text-align: center;user-select: none;outline: none;margin: 0px;}
+.hidden{transform: translate(0px ,-200px);opacity: 1;transition: 1s;}
+.noDisp{display: none !important;}
+.taille{width: 400px !important;height: 400px !important;transition: 1s;border: solid 1px red;}
+#jeu{display: block;width:0px ;height:0px;background-color: gray;margin: auto;}
+#felicitation{background-color: bisque;font-size: 20px;font-weight: bolder;padding: 0;box-shadow: -10px 10px 100px gray;}
+#rejouer{font:bold 10px sans-serif;background-color:#607d8b;font-size: 25px;padding: 0;cursor: pointer;border-radius: 10px;border: solid 2px #32444e;}
+#btn {font:bold 1em sans-serif; cursor: pointer;height: 80px;width: 150px; background: burlywood;box-shadow: -10px 10px  gray;border-radius: 20px;border: solid 0px;}
+#btn:hover{background: rgb(222, 160, 84);transition: 0.2s;}
+#btn:active{box-shadow: -3px 3px  gray;transition: 0.2s;}
+#btn:focus{outline: none;}
