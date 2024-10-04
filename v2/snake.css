@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+body{background-color: #3b3f47;text-align: center;user-select: none;outline: none;margin: 0px;font-family:  Roboto, sans-serif;color: #f8f8f2 ;}
+.hidden{transform: translate(0px ,-500px);opacity: 1;transition: 1s;}
+.noDisp{display: none !important;}
+.show{opacity: 1 !important;transition: 1s;}
+#jeu{background-color: #3a3d4d;}
+#felicitation{ background-color: rgba(255, 228, 196, 0.3);font-size: 20px;font-weight: bolder;margin: auto;display: flex;justify-content: center;align-items: center;flex-direction: column-reverse;position: absolute;top: 0%;left: 0%;width: 400px;height: 400px;}
+#rejouer{font:bold 10px sans-serif;background-color:#607d8b;font-size: 25px;padding: 10px 20px;cursor: pointer;border-radius: 10px;border: solid 2px #32444e;display: flex;margin: auto;margin-top: 10px;}
+#btn {font:bold 1em sans-serif; cursor: pointer;height: 80px;width: 150px; background: #4CAF50;box-shadow: 0 5px 15px  rgba(0, 0, 0, 0.2);border-radius: 20px;border: solid 0px;}
+#btn:hover{background: #4caf4f90;transition: 0.2s;}
+#btn:active{box-shadow:0 3px 10px rgba(0, 0, 0, 0.8);transition: 0.2s;}
+#btn:focus{outline: none;}
+#jeuParam{transition: 1s;display: flex;justify-content: space-between ;padding: 10px;color: #f8f8f2 ;font-family:'Press Start 2P', cursive;}
+.terrain{border: solid 1px red;width: 400px;height: 400px;position: relative;}
+.tout{display: flex;width:400px;border-radius: 10px;flex-direction: column;position: absolute;top: 50%;left: 50%;transform: translate(-50% ,-50%);opacity: 0;background-color: #282a36;}
+#titre {text-align: center;margin: 20px;}
+#titre h1 {font-size: 3em;margin: 0;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);}
+#titre h3 {font-size: 1.5em;margin-top: 10px;}
